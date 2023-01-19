@@ -1,0 +1,10 @@
+build
+vendor
+site_config.php
+ansible/roles
+data/sessions/*
+*.cache
+*.css*
+*.mo
+
+.DS_Store

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ */
+declare (strict_types=1);
+
+define('APPLICATION_NAME', 'accessibility-checker');
+
+/**
+ * URL Generation settings
+ *
+ * Do NOT use trailing slashes
+ *
+ * If your site is being proxied, change BASE_HOST to the hostname
+ * used for the outside world.
+ */
+define('BASE_URI' , '/calendars');
+#define('BASE_HOST', isset($_SERVER['HTTP_X_FORWARDED_HOST'])
+#                        ? $_SERVER['HTTP_X_FORWARDED_HOST']
+#                        : $_SERVER['SERVER_NAME']);
+define('BASE_HOST', $_SERVER['SERVER_NAME']);
+define('BASE_URL' , "$_SERVER[REQUEST_SCHEME]://".BASE_HOST.BASE_URI);
+
+
+define('DATE_FORMAT',    'n/j/Y');
+define('TIME_FORMAT',    'g:i a');
+define('DATETIME_FORMAT', DATE_FORMAT.' '.TIME_FORMAT);
+define('LOCALE', 'en_US');
+
+define('PAGINATION_ITEMS_PER_PAGE', 20);

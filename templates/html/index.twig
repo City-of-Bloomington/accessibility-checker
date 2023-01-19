@@ -1,0 +1,20 @@
+{#
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ * @param array events
+ * @see https://developers.google.com/calendar/api/v3/reference/events/list
+#}
+
+{% extends "html/layouts/default.twig" %}
+{% block content %}
+<header>
+    <h1>Accessibility Checker</h1>
+</header>
+<section>
+    <form method="post" enctype="multipart/form-data">
+        <fieldset>
+            <button type="submit">Upload</button>
+        </fieldset>
+    </form>
+</section>
+{% endblock %}
