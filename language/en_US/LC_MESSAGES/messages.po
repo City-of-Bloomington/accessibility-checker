@@ -1,5 +1,5 @@
 # Translation
-# Copyright (C) 2020 City of Bloomington
+# Copyright (C) 2023 City of Bloomington
 # This file is distributed under the same license as the Monroe application.
 domain "messages"
 
@@ -21,3 +21,9 @@ msgstr "Signed in as %s"
 
 msgid "no_results"
 msgstr "No %s found"
+
+msgid "file_max_size"
+msgstr "Max Filesize: %s"
+
+msgid "file_type_accept"
+msgstr "Accepted Filetypes: %s"

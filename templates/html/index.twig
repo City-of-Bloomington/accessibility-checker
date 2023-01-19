@@ -1,7 +1,9 @@
 {#
  * @copyright 2023 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
- * @param array events
+ * @param int    maxBytes
+ * @param string maxSize
+ * @param string accept
  * @see https://developers.google.com/calendar/api/v3/reference/events/list
 #}
 
@@ -13,6 +15,9 @@
 <section>
     <form method="post" enctype="multipart/form-data">
         <fieldset>
+            <input id="testFile" type="file" name="testFile" accept="{{ accept }}" />
+            <div>{{ _('file_max_size',    'messages')|format(maxSize) }}</div>
+            <div>{{ _('file_type_accept', 'messages')|format(accept ) }}</div>
             <button type="submit">Upload</button>
         </fieldset>
     </form>

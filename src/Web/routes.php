@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2020-2022 City of Bloomington, Indiana
+ * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -10,4 +10,4 @@ $map    = $ROUTES->getMap();
 
 $map->tokens(['id' => '\d+']);
 
-$map->get('home.index',    '/'      , Web\HomeController::class);
+$map->get('home.index', '/', Web\HomeController::class)->allows(['POST']);
