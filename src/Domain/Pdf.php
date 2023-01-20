@@ -43,4 +43,9 @@ class Pdf
             throw new \Exception("file/invalidSourceFile");
         }
 	}
+
+	public static function validate(string $file): string
+    {
+        return shell_exec(SITE_HOME."/verapdf/verapdf -f ua1 --format html $file");
+    }
 }

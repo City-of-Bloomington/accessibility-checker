@@ -37,8 +37,10 @@ class HomeController extends Controller
                 mkdir  ($dir, 0777, true);
             }
             move_uploaded_file($_FILES['testFile']['tmp_name'], "$dir/$filename");
-            $pdf = Pdf::convertToPdf("$dir/$filename", SITE_HOME);
-
+            $pdf  = Pdf::convertToPdf("$dir/$filename", SITE_HOME);
+            $html = Pdf::validate($pdf);
+            echo $html;
+            exit();
         }
 
         return new HomeView();
