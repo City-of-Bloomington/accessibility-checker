@@ -2,7 +2,9 @@ build
 vendor
 site_config.php
 ansible/roles
+data/files/*
 data/sessions/*
+data/user
 *.cache
 *.css*
 *.mo

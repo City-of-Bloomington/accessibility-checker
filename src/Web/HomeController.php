@@ -7,7 +7,8 @@ declare (strict_types=1);
 
 namespace Web;
 
-use \Web\Views\HomeView;
+use Domain\Pdf;
+use Web\Views\HomeView;
 
 class HomeController extends Controller
 {
@@ -21,10 +22,9 @@ class HomeController extends Controller
             }
 
             $file          = $_FILES['testFile'];
-            $uploaded_file = $file['tmp_name'];
             $filename      = basename($file['name']);
 
-            $mime_type = mime_content_type($uploaded_file);
+            $mime_type = mime_content_type($_FILES['testFile']['tmp_name']);
             if (array_key_exists($mime_type, HomeView::$mime_types)) {
                 $extension = HomeView::$mime_types[$mime_type];
             }
@@ -32,7 +32,13 @@ class HomeController extends Controller
                 throw new \Exception("files/unknownFileType");
             }
 
-            move_uploaded_file($uploaded_file, self::DIR."/$filename");
+            $dir = SITE_HOME.'/files';
+            if (!is_dir($dir)) {
+                mkdir  ($dir, 0777, true);
+            }
+            move_uploaded_file($_FILES['testFile']['tmp_name'], "$dir/$filename");
+            $pdf = Pdf::convertToPdf("$dir/$filename", SITE_HOME);
+
         }
 
         return new HomeView();

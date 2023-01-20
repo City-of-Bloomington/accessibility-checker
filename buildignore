@@ -5,7 +5,9 @@ dist
 .git*
 site_config.php
 backup.cnf
+data/files/*
 data/sessions/*
+data/user
 public/COB
 .sass-cache
 docker/
