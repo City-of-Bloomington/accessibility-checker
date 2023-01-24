@@ -28,14 +28,17 @@ class Pdf
 	{
         if (is_file($file) && is_writable($file)) {
             $info = pathinfo($file);
-            $cmd  = "libreoffice -env:UserInstallation=file://$config --convert-to pdf --headless --outdir $info[dirname] $file";
-            $out  = "$cmd\n";
-            $out .= shell_exec($cmd);
-            file_put_contents("$info[dirname]/$info[filename].log", $out);
+            $pdf  = 'pdf:"writer_pdf_Export:SelectPdfVersion=16,PDFUACompliance,UseTaggedPDF=True"';
+            $cmd  = "libreoffice -env:UserInstallation=file://$config --convert-to pdf --headless --outdir \"$info[dirname]\" \"$file\"";
+            $out  = shell_exec($cmd);
+            $log  = fopen("$info[dirname]/$info[filename].log", 'a');
+            fwrite($log, "$cmd\n");
+            fwrite($log, "$out\n");
 
             if (!is_file("$info[dirname]/$info[filename].pdf")) {
                 throw new \Exception("file/pdfConversionFailed");
             }
+            fclose($log);
 
             return "$info[dirname]/$info[filename].pdf";
         }
@@ -46,6 +49,12 @@ class Pdf
 
 	public static function validate(string $file): string
     {
-        return shell_exec(SITE_HOME."/verapdf/verapdf -f ua1 --format html $file");
+        $info = pathinfo($file);
+        $cmd  = SITE_HOME."/verapdf/verapdf -f ua1 --format html $file";
+        $log  = fopen("$info[dirname]/$info[filename].log", 'a');
+        fwrite($log, "$cmd\n");
+
+        return shell_exec(SITE_HOME."/verapdf/verapdf -f ua1 --format html \"$file\"");
+        fclose($log);
     }
 }
